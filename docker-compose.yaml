@@ -1,0 +1,28 @@
+version: "3"
+services:
+  pastagan_pp_test:
+    container_name: pastagan_pp_test
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - USER_NAME=$USER
+        - USER_ID=$USER_ID
+    runtime: nvidia
+    shm_size: "8gb"
+    ulimits:
+      memlock: -1
+      stack: 67108864
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    privileged: true
+    volumes:
+      - ./:$HOME/Projects/
+      - ../UPT_512_320/:$HOME/datasets/
+      - /tmp/.X11-unix:/tmp/.X11-unix:ro
+    environment:
+      - DISPLAY=$DISPLAY
+    working_dir: $HOME/Projects/
+    network_mode: "host"
+    #restart: always
+    tty: true
