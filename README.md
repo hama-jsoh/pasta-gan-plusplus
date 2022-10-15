@@ -2,6 +2,10 @@
 
 ## Getting started
 
+### Pre-requisite
++ download dataset --> UPT dataset : [Google_drive](https://drive.google.com/file/d/1QgIQJ83FXE9XLUhKdY1RK-cHr5PGAa8V/view?usp=sharing)
++ download pretrained_model --> [Google_drive](https://drive.google.com/file/d/1k5QTVzd1B67--Y7WGejbRVA1Cgg6Wy2P/view?usp=sharing)
+
 ### docker build & run
 ```bash
 USER_ID=$UID docker-compose up -d
