@@ -14,7 +14,7 @@ docker exec -it [container_name] bash
 
 ### Inference
 ```bash
-bash inference.sh 3
+bash test.sh 3
 ```
   
 *options*
