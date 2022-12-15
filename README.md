@@ -2,30 +2,32 @@
 
 ## Getting started
 
-### Pre-requisite
+### Dataset & model
 + download dataset --> UPT dataset : [Google_drive](https://drive.google.com/file/d/1QgIQJ83FXE9XLUhKdY1RK-cHr5PGAa8V/view?usp=sharing)
 + download pretrained_model --> [Google_drive](https://drive.google.com/file/d/1k5QTVzd1B67--Y7WGejbRVA1Cgg6Wy2P/view?usp=sharing)
 
+----
+
+### 1. Auto Setup
 ```bash
-bash downloads.sh
+https://github.com/hama-jsoh/pasta-gan-plusplus.git && bash setup.sh
 ```
 
-
-### Docker build & run
+### 2. Docker build & run
 ```bash
 USER_ID=$UID docker-compose up -d
 docker exec -it [container_name] bash
 ```
 
-### Inference
+### 3. Inference(test)
 ```bash
 bash test.sh 3
 ```
   
-*options*
-+ 1 : upper
-+ 2 : pants
-+ 3 : full
+> *options*
+> + 1 : upper
+> + 2 : pants
+> + 3 : full
 
 ### Utils
 
