@@ -26,16 +26,18 @@ docker exec -it [container_name] bash
 ```bash
 bash test.sh 3
 ```
-
-### Step 4: Check result
-```bash
-cd test_results/full && ls
-```
   
 > *options*
 > + 1 : upper
 > + 2 : pants
 > + 3 : full
+
+### Step 4: Check result
+```bash
+cd test_results/full && ls
+```
+
+----
 
 ### Utils
 
