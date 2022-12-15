@@ -10,7 +10,7 @@
 
 ### 1. Auto Setup
 ```bash
-https://github.com/hama-jsoh/pasta-gan-plusplus.git && bash setup.sh
+https://github.com/hama-jsoh/pasta-gan-plusplus.git && cd pasta-gan-plusplus && bash setup.sh
 ```
 
 ### 2. Docker build & run
