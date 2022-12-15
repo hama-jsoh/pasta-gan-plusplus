@@ -18,7 +18,7 @@ services:
       - NVIDIA_VISIBLE_DEVICES=all
     privileged: true
     volumes:
-      - ./pasta-gan-plusplus/:$HOME/Projects/
+      - ../pasta-gan-plusplus/:$HOME/Projects/
       - ../UPT_512_320/:$HOME/datasets/
       - /tmp/.X11-unix:/tmp/.X11-unix:ro
     environment:
