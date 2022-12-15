@@ -6,7 +6,12 @@
 + download dataset --> UPT dataset : [Google_drive](https://drive.google.com/file/d/1QgIQJ83FXE9XLUhKdY1RK-cHr5PGAa8V/view?usp=sharing)
 + download pretrained_model --> [Google_drive](https://drive.google.com/file/d/1k5QTVzd1B67--Y7WGejbRVA1Cgg6Wy2P/view?usp=sharing)
 
-### docker build & run
+```bash
+bash downloads.sh
+```
+
+
+### Docker build & run
 ```bash
 USER_ID=$UID docker-compose up -d
 docker exec -it [container_name] bash
@@ -22,7 +27,7 @@ bash test.sh 3
 + 2 : pants
 + 3 : full
 
-### utils
+### Utils
 
 1. resize
 ```bash
