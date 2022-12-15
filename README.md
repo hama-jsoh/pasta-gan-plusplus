@@ -8,18 +8,21 @@
 
 ----
 
-### 1. Auto Setup
+### Step 1: Set Up the Folder Structure
+`setup.sh`  
+- download & setup dataset
+- download & setup model(checkpoint)
 ```bash
 https://github.com/hama-jsoh/pasta-gan-plusplus.git && cd pasta-gan-plusplus && bash setup.sh
 ```
 
-### 2. Docker build & run
+### Step 2: Docker build & run
 ```bash
 USER_ID=$UID docker-compose up -d
 docker exec -it [container_name] bash
 ```
 
-### 3. Inference(test)
+### Step 3: Inference(test)
 ```bash
 bash test.sh 3
 ```
@@ -33,12 +36,10 @@ bash test.sh 3
 
 1. resize
 ```bash
-cd utils/
-python3 resize_image.py
+python3 utils/resize_image.py
 ```
 
 2. make test_pairs.txt
 ```bash
-cd utils/
-python3 make_pairs.py
+python3 utils/make_pairs.py
 ```
