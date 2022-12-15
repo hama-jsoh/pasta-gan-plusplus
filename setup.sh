@@ -19,8 +19,8 @@ main() {
 	 && rm UPT_512_320.zip
   
 	download_google_drive 1k5QTVzd1B67--Y7WGejbRVA1Cgg6Wy2P network-snapshot-004408.pkl \
-	 && mkdir -p ./checkpoints/pasta-gan++/ \
-	 && mv network-snapshot-004408.pkl ./checkpoints/pasta-gan++/
+	 && mkdir -p pasta-gan-plusplus/checkpoints/pasta-gan++/ \
+	 && mv network-snapshot-004408.pkl pasta-gan-plusplus/checkpoints/pasta-gan++/
 	 
 }
 
