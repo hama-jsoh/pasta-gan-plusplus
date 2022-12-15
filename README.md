@@ -9,7 +9,7 @@
 ----
 
 ### Step 1: Set Up the Folder Structure
-`setup.sh`  
+`setup.sh`  <-- Automatic setup script  
 - download & setup dataset
 - download & setup model(checkpoint)
 ```bash
