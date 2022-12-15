@@ -1,7 +1,8 @@
 version: "3"
 services:
   pastagan_pp_test:
-    container_name: pastagan_pp_test
+    image: pastagan_plus_plus:0.0.1
+    container_name: pastagan_plus_plus
     build:
       context: .
       dockerfile: Dockerfile
@@ -17,7 +18,7 @@ services:
       - NVIDIA_VISIBLE_DEVICES=all
     privileged: true
     volumes:
-      - ./:$HOME/Projects/
+      - ./pasta-gan-plusplus/:$HOME/Projects/
       - ../UPT_512_320/:$HOME/datasets/
       - /tmp/.X11-unix:/tmp/.X11-unix:ro
     environment:
