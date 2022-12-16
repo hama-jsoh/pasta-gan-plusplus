@@ -8,7 +8,7 @@ RUN sed -i "s/archive.ubuntu/mirror.kakao/g" /etc/apt/sources.list \
  && apt-get update \
  && apt-get install -y --no-install-recommends \
     libgl1-mesa-dev libglib2.0-0 libsm6 libxrender1 libxext6 \
-    software-properties-common sudo git curl unzip wget locales openssh-server \
+    software-properties-common gcc sudo git curl unzip wget locales openssh-server \
     python${PYTHON_VER} python${PYTHON_VER}-distutils python${PYTHON_VER}-dev \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists
