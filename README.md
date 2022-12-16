@@ -13,7 +13,7 @@
 - download & setup dataset
 - download & setup model(checkpoint)
 ```bash
-https://github.com/hama-jsoh/pasta-gan-plusplus.git && cd pasta-gan-plusplus && bash setup.sh
+git clone https://github.com/hama-jsoh/pasta-gan-plusplus.git && cd pasta-gan-plusplus && bash setup.sh
 ```
 
 ### Step 2: Docker build & run
