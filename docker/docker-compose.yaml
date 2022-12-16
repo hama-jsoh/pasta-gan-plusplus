@@ -1,8 +1,8 @@
 version: "3"
 services:
-  pastagan_pp_test:
-    image: pastagan_plus_plus:0.0.1
-    container_name: pastagan_plus_plus
+  pastagan_pp:
+    image: pasta-gan-plusplus:0.0.1
+    container_name: pasta-gan-plusplus
     build:
       context: .
       dockerfile: Dockerfile
