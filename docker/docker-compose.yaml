@@ -18,8 +18,10 @@ services:
       - NVIDIA_VISIBLE_DEVICES=all
     privileged: true
     volumes:
-      - ../pasta-gan-plusplus/:$HOME/Projects/
-      - ../UPT_512_320/:$HOME/datasets/
+      - ../pasta-gan-plusplus/:$HOME/Projects/pastagan/
+      - ../UPT_512_320/:$HOME/Projects/datasets/
+      - ../graphonomy/:$HOME/Projects/graphonomy/
+      - ../openpose/:$HOME/Projects/openpose/
       - /tmp/.X11-unix:/tmp/.X11-unix:ro
     environment:
       - DISPLAY=$DISPLAY
