@@ -12,6 +12,10 @@ download_google_drive() {
 
 }
 
+git_clone() {
+	git clone https://github.com/hama-jsoh/$1.git
+}
+
 main() {
 
 	download_google_drive 1QgIQJ83FXE9XLUhKdY1RK-cHr5PGAa8V UPT_512_320.zip \
@@ -21,7 +25,10 @@ main() {
 	download_google_drive 1k5QTVzd1B67--Y7WGejbRVA1Cgg6Wy2P network-snapshot-004408.pkl \
 	 && mkdir -p pasta-gan-plusplus/checkpoints/pasta-gan++/ \
 	 && mv network-snapshot-004408.pkl pasta-gan-plusplus/checkpoints/pasta-gan++/
-	 
+ 
+	git_clone openpose
+	
+	git_clone graphonomy
 }
 
 main
