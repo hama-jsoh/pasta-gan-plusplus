@@ -283,3 +283,8 @@ if __name__ == "__main__":
         FileOutput("json", "../test_samples2/keypoints")
     )
     openpose.start()
+    
+    graphonomy = PreProcessor(
+        UriInput("parsing", "../test_samples/image")
+        FileOutput("img", "../test_samples2/parsing")
+    )
