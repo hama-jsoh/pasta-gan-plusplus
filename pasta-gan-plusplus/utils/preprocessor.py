@@ -46,7 +46,8 @@ class FileOutput:
         uri: str = "../test_samples",
         dict_obj = None,
         img_list = None,
-        indent: bool = False
+        indent: bool = False,
+        visualize: bool = False
     ) -> None:
         self.name = self.__class__.__name__
         self.uid = uid
@@ -54,6 +55,7 @@ class FileOutput:
         self._dict_obj = dict_obj
         self._img_list = img_list
         self._indent = indent
+        self._visualize = visualize
 
     def run(self, visualize=False):
         base_path = self.uri
@@ -74,15 +76,20 @@ class FileOutput:
                         json.dump(self._dict_obj[file_], j, ensure_ascii=False)
 
         if self.uid == "img":
+            #img_list = tqdm(self._img_list)
             for parsing_img, img_path, result in self._img_list:
                 basename = img_path[: img_path.rfind('.')]
                 filename = basename[basename.rfind('/')+1:]
 
                 imgfile = f"{filename}.png"
                 filepath = os.path.join(base_path, imgfile)
-
-                if visualize:
-                    parsing_img.save(f"{image}_colormap.png")
+                
+                if self._visualize:
+                    colormap = f"{filename}_colormap.png"
+                    colormap_base = os.path.join(base_path, 'colormap')
+                    os.path.makedirs(colormap_base, exist_ok=True)
+                    colormap_path = os.path.join(colormap_base, colormap)
+                    parsing_img.save(colormap_path)
                 cv2.imwrite(filepath, result[0, :, :])
 
 
