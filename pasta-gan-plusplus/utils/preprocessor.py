@@ -123,7 +123,7 @@ class OpenPose:
 
         self.verbose = verbose
 
-    def GetKeypoints(self, probMap, threshold=0.1) -> list:
+    def _get_keypoints(self, probMap, threshold=0.1) -> list:
         mapSmooth = cv2.GaussianBlur(probMap, (3, 3), 0, 0)
         mapMask = np.uint8(mapSmooth > threshold)
         keypoints = []
@@ -182,7 +182,7 @@ class OpenPose:
             for part in range(self.nPoints):
                 probMap = output[0, part, :, :]
                 probMap = cv2.resize(probMap, (image.shape[1], image.shape[0]))
-                keypoints = self.GetKeypoints(probMap, threshold)
+                keypoints = self._get_keypoints(probMap, threshold)
                 if self.verbose:
                     print("Keypoints - {} : {}".format(KEYPOINTS_NAME[part], keypoints))
                 detected_keypoints.append(keypoints)
