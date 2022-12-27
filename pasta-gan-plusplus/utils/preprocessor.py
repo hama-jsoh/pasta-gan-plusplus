@@ -84,7 +84,7 @@ class PreProcessor:
     def openpose(self):
         pose = OpenPose(
             model="coco",
-            verbose=True
+            verbose=self.verbose
         )
         kpts = pose.run(self._blocks['UriInput'].uri)
         return kpts
