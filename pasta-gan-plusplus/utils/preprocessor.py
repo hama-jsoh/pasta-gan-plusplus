@@ -2,6 +2,7 @@ import os
 import json
 import numpy as np
 import cv2
+#from graphonomy import Graphonomy
 
 
 KEYPOINTS_NAME = [
@@ -44,6 +45,7 @@ class FileOutput:
         uid: str = "json",
         uri: str = "../test_samples",
         dict_obj = None,
+        img_list = None,
         indent: bool = False
     ) -> None:
         self.name = self.__class__.__name__
@@ -52,9 +54,11 @@ class FileOutput:
         self._dict_obj = dict_obj
         self._indent = indent
 
-    def run(self):
+    def run(self, visualize=False):
+        base_path = self.uri
+        os.makedirs(base_path, exist_ok=True)
+
         if self.uid == "json":
-            base_path = self.uri
             for file_ in self._dict_obj.keys():
                 basename = file_[: file_.rfind('.')]
                 filename = basename[basename.rfind('/')+1:]
@@ -62,12 +66,23 @@ class FileOutput:
                 jsonfile = f"{filename}_keypoints.json"
                 filepath = os.path.join(base_path, jsonfile)
 
-                os.makedirs(base_path, exist_ok=True)
                 with open(filepath, "w") as j:
                     if self._indent:
                         json.dump(self._dict_obj[file_], j, ensure_ascii=False, indent=4)
                     else:
                         json.dump(self._dict_obj[file_], j, ensure_ascii=False)
+
+        if self.uid == "img":
+            for parsing_img, img_path in self._img_list:
+                basename = img_path[: img_path.rfind('.')]
+                filename = basename[basename.rfind('/')+1]
+
+                imgfile = f"{filename}.png"
+                filepath = os.path.join(base_path, imgfile)
+
+                if visualize:
+                    parsing_img.save(f"{image}_colormap.png")
+                cv2.imwrite(imgfile, results[0, :, :])
 
 
 class PreProcessor:
@@ -90,7 +105,12 @@ class PreProcessor:
         return kpts
 
     def graphonomy(self):
-        pass
+        humanparse = Graphonomy(
+            model="path",
+            use_gpu=True
+        )
+        parsing_imgs = humanparse.run(self._blocks['UriInput'].uri)
+        return parsing_imgs
 
     def start(self):
         if self._blocks['UriInput'].uid == "keypoints":
@@ -117,6 +137,7 @@ class OpenPose:
         else:
             raise Exception("model required!, [recommends: 'coco']")
         self.net = cv2.dnn.readNetFromCaffe(protoFile, weightFile)
+
         self.verbose = verbose
 
     def _get_keypoints(self, probMap, threshold=0.1) -> list:
@@ -154,7 +175,7 @@ class OpenPose:
         kptList = []
         for img in imgList:
             image = cv2.imread(img)
-            image = self._resize_img(image, 320, 512)
+            image = self._ResizeImg(image, 320, 512)
 
             imageHeight, imageWidth, _ = image.shape
             inHeight = 368
@@ -209,7 +230,7 @@ class OpenPose:
         imgKpt = dict(zip(imgList, kptList))
         return imgKpt
 
-    def _resize_img(self, img: np.array, width: int, height: int) -> np.array:
+    def _ResizeImg(self, img: np.array, width: int, height: int) -> np.array:
         bg_color = img[0][0]
         ratio = width / height
         if img.shape[1] / img.shape[0] < ratio:
