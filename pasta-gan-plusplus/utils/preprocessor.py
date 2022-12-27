@@ -77,7 +77,6 @@ class PreProcessor:
         verbose: bool = True
     ):
         self.verbose = verbose
-
         self._blocks = {}
         for block in blocks:
             self._blocks[block.name] = block
@@ -118,7 +117,6 @@ class OpenPose:
         else:
             raise Exception("model required!, [recommends: 'coco']")
         self.net = cv2.dnn.readNetFromCaffe(protoFile, weightFile)
-
         self.verbose = verbose
 
     def _get_keypoints(self, probMap, threshold=0.1) -> list:
