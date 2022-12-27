@@ -52,6 +52,7 @@ class FileOutput:
         self.uid = uid
         self.uri = os.path.abspath(uri)
         self._dict_obj = dict_obj
+        self._img_list = img_list
         self._indent = indent
 
     def run(self, visualize=False):
@@ -73,16 +74,16 @@ class FileOutput:
                         json.dump(self._dict_obj[file_], j, ensure_ascii=False)
 
         if self.uid == "img":
-            for parsing_img, img_path in self._img_list:
+            for parsing_img, img_path, result in self._img_list:
                 basename = img_path[: img_path.rfind('.')]
-                filename = basename[basename.rfind('/')+1]
+                filename = basename[basename.rfind('/')+1:]
 
                 imgfile = f"{filename}.png"
                 filepath = os.path.join(base_path, imgfile)
 
                 if visualize:
                     parsing_img.save(f"{image}_colormap.png")
-                cv2.imwrite(filepath, results[0, :, :])
+                cv2.imwrite(filepath, result[0, :, :])
 
 
 class PreProcessor:
@@ -118,7 +119,9 @@ class PreProcessor:
             setattr(self._blocks['FileOutput'], '_dict_obj', kpts)
             self._blocks['FileOutput'].run()
         elif self._blocks['UriInput'].uid == "parsing":
-            pass
+            parsing_imgs = self.graphonomy()
+            setattr(self._blocks['FileOutput'], '_img_list', parsing_imgs)
+            self._blocks['FileOutput'].run()
         else:
             raise ValueError('Enter Blocks')
 
