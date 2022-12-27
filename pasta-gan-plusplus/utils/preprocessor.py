@@ -25,6 +25,7 @@ KEYPOINTS_NAME = [
     "L-Ear",
 ]
 
+
 class UriInput:
     def __init__(
         self,
@@ -35,16 +36,6 @@ class UriInput:
         self.name = self.__class__.__name__
         self.uid = uid
         self.uri = uri
-
-#        if self.uid == "keypoints":
-#            protoFile = "../pretrained_models/pose_deploy_linevec.prototxt"
-#            weightFile = "../pretrained_models/pose_iter_440000.caffemodel"
-#            self.nPoints = 18
-#            self.net = cv2.dnn.readNetFromCaffe(protoFile, weightFile)
-
-    @property
-    def model(self):
-        return self.net
 
 
 class FileOutput:
