@@ -158,7 +158,7 @@ class OpenPose:
         kptList = []
         for img in imgList:
             image = cv2.imread(img)
-            image = self._ResizeImg(image, 320, 512)
+            image = self._resize_img(image, 320, 512)
 
             imageHeight, imageWidth, _ = image.shape
             inHeight = 368
@@ -213,7 +213,7 @@ class OpenPose:
         imgKpt = dict(zip(imgList, kptList))
         return imgKpt
 
-    def _ResizeImg(self, img: np.array, width: int, height: int) -> np.array:
+    def _resize_img(self, img: np.array, width: int, height: int) -> np.array:
         bg_color = img[0][0]
         ratio = width / height
         if img.shape[1] / img.shape[0] < ratio:
