@@ -82,7 +82,7 @@ class FileOutput:
 
                 if visualize:
                     parsing_img.save(f"{image}_colormap.png")
-                cv2.imwrite(imgfile, results[0, :, :])
+                cv2.imwrite(filepath, results[0, :, :])
 
 
 class PreProcessor:
