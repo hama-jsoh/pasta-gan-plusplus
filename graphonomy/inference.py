@@ -45,9 +45,11 @@ label_colours = [
 
 def set_arguments():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--loadmodel", default="", type=str)
-    parser.add_argument("--dataroot", default="", type=str)
-    parser.add_argument("--use_gpu", default=1, type=int)
+    parser.add_argument("--loadmodel", default="./data/pretrained_model/inference.pth", type=str)
+    parser.add_argument("--dataroot", default="./img/", type=str)
+    parser.add_argument("--output_path", default="./img/parsing/", type=str)
+    parser.add_argument("--use_gpu", default=True, type=bool)
+    parser.add_argument("--visualize", default=False, type=bool)
     args = parser.parse_args()
     return args
 
@@ -55,7 +57,9 @@ def set_arguments():
 ARGS = set_arguments()
 MODEL = ARGS.loadmodel
 DATAROOT = ARGS.dataroot
+OUTPUT_PATH = ARGS.output_path
 USE_GPU = ARGS.use_gpu
+VISUALIZE = ARGS.visualize
 
 
 def flip(x, dim):
@@ -274,9 +278,9 @@ class Graphonomy:
 
 if __name__ == "__main__":
     graphonomy = Graphonomy(
-        model='./data/pretrained_model/inference.pth',
-        use_gpu=True,
-        visualize=True
+        model=MODEL,
+        use_gpu=USE_GPU,
+        visualize=VISUALIZE
     )
-    parsing_imgs = graphonomy.run(dataroot='./img/')
-    graphonomy.fileoutput(parsing_imgs, output_path='./img/parsing/')
+    parsing_imgs = graphonomy.run(dataroot=DATAROOT)
+    graphonomy.fileoutput(parsing_imgs, output_path=OUTPUT_PATH)
