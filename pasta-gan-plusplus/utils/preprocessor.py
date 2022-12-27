@@ -60,8 +60,6 @@ class FileOutput:
                 filename = basename[basename.rfind('/')+1:]
 
                 jsonfile = f"{filename}_keypoints.json"
-                #basedir = os.path.join(base_path, 'keypoints')
-                #filepath = os.path.join(basedir, jsonfile)
                 filepath = os.path.join(base_path, jsonfile)
 
                 os.makedirs(base_path, exist_ok=True)
