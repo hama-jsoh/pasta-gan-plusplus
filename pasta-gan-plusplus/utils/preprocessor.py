@@ -25,6 +25,95 @@ KEYPOINTS_NAME = [
     "L-Ear",
 ]
 
+class UriInput:
+    def __init__(
+        self,
+        uid: str,
+        uri: str,
+    ) -> None:
+        self.dataroot = os.path.abspath(uri)
+        self.name = self.__class__.__name__
+        self.uid = uid
+        self.uri = uri
+
+#        if self.uid == "keypoints":
+#            protoFile = "../pretrained_models/pose_deploy_linevec.prototxt"
+#            weightFile = "../pretrained_models/pose_iter_440000.caffemodel"
+#            self.nPoints = 18
+#            self.net = cv2.dnn.readNetFromCaffe(protoFile, weightFile)
+
+    @property
+    def model(self):
+        return self.net
+
+
+class FileOutput:
+    def __init__(
+        self,
+        uid: str = "json",
+        uri: str = "../test_samples",
+        dict_obj = None,
+        indent: bool = False
+    ) -> None:
+        self.name = self.__class__.__name__
+        self.uid = uid
+        self.uri = os.path.abspath(uri)
+        self._dict_obj = dict_obj
+        self._indent = indent
+
+    def run(self):
+        if self.uid == "json":
+            base_path = self.uri
+            for file_ in self._dict_obj.keys():
+                basename = file_[: file_.rfind('.')]
+                filename = basename[basename.rfind('/')+1:]
+
+                jsonfile = f"{filename}_keypoints.json"
+                #basedir = os.path.join(base_path, 'keypoints')
+                #filepath = os.path.join(basedir, jsonfile)
+                filepath = os.path.join(base_path, jsonfile)
+
+                os.makedirs(base_path, exist_ok=True)
+                with open(filepath, "w") as j:
+                    if self._indent:
+                        json.dump(self._dict_obj[file_], j, ensure_ascii=False, indent=4)
+                    else:
+                        json.dump(self._dict_obj[file_], j, ensure_ascii=False)
+
+
+class PreProcessor:
+    def __init__(
+        self,
+        *blocks,
+        verbose: bool = True
+    ):
+        self.verbose = verbose
+
+        self._blocks = {}
+        for block in blocks:
+            self._blocks[block.name] = block
+
+    def openpose(self):
+        pose = OpenPose(
+            model="coco",
+            verbose=True
+        )
+        kpts = pose.run(self._blocks['UriInput'].uri)
+        return kpts
+
+    def graphonomy(self):
+        pass
+
+    def start(self):
+        if self._blocks['UriInput'].uid == "keypoints":
+            kpts = self.openpose()
+            setattr(self._blocks['FileOutput'], '_dict_obj', kpts)
+            self._blocks['FileOutput'].run()
+        elif self._blocks['UriInput'].uid == "parsing":
+            pass
+        else:
+            raise ValueError('Enter Blocks')
+
 
 class OpenPose:
     def __init__(
@@ -64,7 +153,7 @@ class OpenPose:
             keypoints = [0, 0, 0]
         return keypoints
 
-    def Inference(self, imgroot: str = "./data/human") -> dict:
+    def run(self, imgroot: str = "./data/human") -> dict:
         dataroot = os.path.abspath(imgroot)
         if self.verbose:
             print("Using CPU device")
@@ -133,24 +222,6 @@ class OpenPose:
         imgKpt = dict(zip(imgList, kptList))
         return imgKpt
 
-    @staticmethod
-    def FileOutput(dict_obj, file_path: str, indent: bool = False) -> None:
-        base_path = os.path.abspath(file_path)
-        for file_ in dict_obj.keys():
-            basename = file_[: file_.rfind('.')]
-            filename = basename[basename.rfind('/')+1:]
-
-            jsonfile = f"{filename}_keypoints.json"
-            basedir = os.path.join(base_path, 'keypoints')
-            filepath = os.path.join(basedir, jsonfile)
-
-            os.makedirs(basedir, exist_ok=True)
-            with open(filepath, "w") as j:
-                if indent:
-                    json.dump(dict_obj[file_], j, ensure_ascii=False, indent=4)
-                else:
-                    json.dump(dict_obj[file_], j, ensure_ascii=False)
-
     def _ResizeImg(self, img: np.array, width: int, height: int) -> np.array:
         bg_color = img[0][0]
         ratio = width / height
@@ -199,19 +270,8 @@ class OpenPose:
 
 
 if __name__ == "__main__":
-
-    # openpose configuration
-    pose = OpenPose(
-        model="coco",
-        verbose=True,
+    openpose = PreProcessor(
+        UriInput("keypoints", "../test_samples/image"),
+        FileOutput("json", "../test_samples2/keypoints")
     )
-
-    # run openpose
-    kpts = pose.Inference(imgroot="../test_samples/image")
-
-    # fileio
-    pose.FileOutput(
-        dict_obj=kpts,
-        file_path="./pathtest/",
-        indent=False,
-    )
+    openpose.start()
