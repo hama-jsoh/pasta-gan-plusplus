@@ -229,7 +229,7 @@ class Graphonomy:
         self,
         model: str,
         use_gpu: bool = True,
-        visualize: bool = True
+        visualize: bool = False
     ) -> None:
         self.net = deeplab_xception_transfer.deeplab_xception_transfer_projection_savemem(
             n_classes=20, hidden_layers=128, source_classes=7,
