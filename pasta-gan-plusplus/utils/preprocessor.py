@@ -288,3 +288,4 @@ if __name__ == "__main__":
         UriInput("parsing", "../test_samples/image")
         FileOutput("img", "../test_samples2/parsing")
     )
+    graphonomy.start()
