@@ -2,7 +2,11 @@ import os
 import json
 import numpy as np
 import cv2
-#from graphonomy import Graphonomy
+
+import sys
+sys.path.append('../graphonomy')
+
+from inference import Graphonomy
 
 
 KEYPOINTS_NAME = [
@@ -83,7 +87,7 @@ class FileOutput:
 
                 imgfile = f"{filename}.png"
                 filepath = os.path.join(base_path, imgfile)
-                
+
                 if self._visualize:
                     colormap = f"{filename}_colormap.png"
                     colormap_base = os.path.join(base_path, 'colormap')
@@ -114,7 +118,7 @@ class PreProcessor:
 
     def graphonomy(self):
         humanparse = Graphonomy(
-            model="path",
+            model="../graphonomy/data/pretrained_model/inference.pth",
             use_gpu=True
         )
         parsing_imgs = humanparse.run(self._blocks['UriInput'].uri)
@@ -293,9 +297,9 @@ if __name__ == "__main__":
         FileOutput("json", "../test_samples2/keypoints")
     )
     openpose.start()
-    
+
     graphonomy = PreProcessor(
-        UriInput("parsing", "../test_samples/image")
+        UriInput("parsing", "../test_samples/image"),
         FileOutput("img", "../test_samples2/parsing")
     )
     graphonomy.start()
