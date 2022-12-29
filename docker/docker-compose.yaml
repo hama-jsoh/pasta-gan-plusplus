@@ -21,8 +21,6 @@ services:
       - /tmp/.X11-unix:/tmp/.X11-unix:ro
       - ../UPT_512_320/:$HOME/Projects/datasets/
       - ../pasta-gan-plusplus/:$HOME/Projects/pastagan/
-      - ../graphonomy/:$HOME/Projects/graphonomy/
-      - ../openpose/:$HOME/Projects/openpose/
     environment:
       - DISPLAY=$DISPLAY
     working_dir: $HOME/Projects/
