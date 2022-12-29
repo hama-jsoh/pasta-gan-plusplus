@@ -500,6 +500,6 @@ if __name__ == "__main__":
     generate_images(
         dataroot='test_samples',
         testtxt='test_pairs.txt',
-        outdir='test_results/genimg/full',
+        outdir='test_results/full',
         testpart='full'
     )
