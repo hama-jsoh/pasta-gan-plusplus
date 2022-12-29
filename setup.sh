@@ -21,17 +21,17 @@ main() {
 
 	# set graphonomy model
 	download_google_drive 1sbP4gVY5ryLM_zTDNZTdOkKN7lydybJz inference.pth \
-	 && mkdir -p graphonomy/data/pretrained_model/ \
-	 && mv inference.pth graphonomy/data/pretrained_model/
+	 && mkdir -p pasta-gan-plusplus/graphonomy/data/pretrained_model/ \
+	 && mv inference.pth pasta-gan-plusplus/graphonomy/data/pretrained_model/
 
 	# set openpose model
 	download_google_drive 13R1vpJrjxFNt7t-jNn-69DRCpECLsxNM pose_iter_440000.caffemodel \
-	 && mkdir openpose/pretrained_models \
-	 && mv pose_iter_440000.caffemodel openpose/pretrained_models/
+	 && mkdir -p pasta-gan-plusplus/pretrained_models \
+	 && mv pose_iter_440000.caffemodel pasta-gan-plusplus/pretrained_models/
 
 	# set openpose prototxt
 	download_google_drive 1elkx5n4xr1Re6mTHaBMcMSRObioo8LLN pose_deploy_linevec.prototxt \
-	 && mv pose_deploy_linevec.prototxt openpose/pretrained_models/
+	 && mv pose_deploy_linevec.prototxt pasta-gan-plusplus/pretrained_models/
 
 }
 
