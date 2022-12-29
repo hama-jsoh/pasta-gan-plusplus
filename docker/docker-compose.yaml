@@ -1,8 +1,8 @@
 version: "3"
 services:
-  pastagan_pp:
+  pastagan_plusplus_dev:
     image: pasta-gan-plusplus:0.0.1
-    container_name: pasta-gan-plusplus
+    container_name: pastagan_plusplus_dev
     build:
       context: .
       dockerfile: Dockerfile
@@ -22,7 +22,7 @@ services:
       - ../pasta-gan-plusplus/:$HOME/Projects/pastagan/
     environment:
       - DISPLAY=$DISPLAY
-    working_dir: $HOME/Projects/
+    working_dir: $HOME/Projects/pastagan/
     network_mode: "host"
-    #restart: always
+    restart: always
     tty: true
