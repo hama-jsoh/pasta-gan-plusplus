@@ -20,8 +20,10 @@ git clone https://github.com/hama-jsoh/pasta-gan-plusplus.git && cd pasta-gan-pl
 ```bash
 USER_ID=$UID docker-compose -f docker/docker-compose.yaml up -d
 ```
-enter container : `docker exec -it [container_name] bash`
-
+### Step 2-1: Enter container
+```bash
+docker exec -it pastagan_plusplus_dev bash
+```
 ### Step 3: Inference(test)
 ```bash
 bash test.sh 3
