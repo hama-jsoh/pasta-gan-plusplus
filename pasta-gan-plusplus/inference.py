@@ -200,8 +200,6 @@ def generate_images(
 
             result = np.concatenate(
                 [
-                    clothes_np[:, 96:416, :],
-                    image_np[:, 96:416, :],
                     gen_img[:, 96:416, :],
                 ],
                 axis=1,
