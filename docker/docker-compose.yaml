@@ -19,7 +19,6 @@ services:
     privileged: true
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix:ro
-      - ../UPT_512_320/:$HOME/Projects/datasets/
       - ../pasta-gan-plusplus/:$HOME/Projects/pastagan/
     environment:
       - DISPLAY=$DISPLAY
