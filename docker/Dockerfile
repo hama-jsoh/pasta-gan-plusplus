@@ -10,6 +10,7 @@ RUN sed -i "s/archive.ubuntu/mirror.kakao/g" /etc/apt/sources.list \
     libgl1-mesa-dev libglib2.0-0 libsm6 libxrender1 libxext6 \
     software-properties-common gcc sudo git curl unzip wget locales openssh-server \
     python${PYTHON_VER} python${PYTHON_VER}-distutils python${PYTHON_VER}-dev \
+    neovim tree tmux screen \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists
 
