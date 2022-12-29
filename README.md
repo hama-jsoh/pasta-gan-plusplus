@@ -61,6 +61,7 @@ cd test_results/full && ls
 ```
 
 ----
+
 ## 2. EXPERIMENT
 ### Step 1: TEST
 ```bash
@@ -75,4 +76,41 @@ bash test.sh 3
 ### Step 2: Check result
 ```bash
 cd test_results/full && ls
+```
+
+----
+
+## 3. Sample Code
+```python
+# inference.py
+...
+
+if __name__ == "__main__":
+    # 1. openpose(preprocessing)
+    openpose = PreProcessor(
+        UriInput("keypoints", "./test_samples/image"),
+        FileOutput("json", "./test_samples/keypoints")
+    )
+    openpose.start()
+
+    # 2. graphonomy(preprocessing)
+    graphonomy = PreProcessor(
+        UriInput("parsing", "./test_samples/image"),
+        FileOutput("img", "./test_samples/parsing")
+    )
+    graphonomy.start()
+
+    # 3. write_txt(permutation)
+    with open("./test_samples/test_pairs.txt", "w") as f:
+        filelist = os.listdir("./test_samples/image")
+        cloth, human = filelist
+        f.write(f"{cloth} {human}")
+
+    # 4. synthesis_result
+    generate_images(
+        dataroot='test_samples',
+        testtxt='test_pairs.txt',
+        outdir='test_results/full',
+        testpart='full'
+    )
 ```
