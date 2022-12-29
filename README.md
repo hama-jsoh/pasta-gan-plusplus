@@ -25,7 +25,7 @@
 
 ----
 
-## Getting started
+## 1. Getting started
 
 ### Dataset & model
 + [Training] download dataset --> UPT dataset : [Google_drive](https://drive.google.com/file/d/1QgIQJ83FXE9XLUhKdY1RK-cHr5PGAa8V/view?usp=sharing)  
@@ -61,7 +61,7 @@ cd test_results/full && ls
 ```
 
 ----
-## EXPERIMENT
+## 2. EXPERIMENT
 ### Step 1: TEST
 ```bash
 bash test.sh 3
@@ -75,17 +75,4 @@ bash test.sh 3
 ### Step 2: Check result
 ```bash
 cd test_results/full && ls
-```
-
-----
-
-## UTILS
-1. resize
-```bash
-python3 utils/resize_image.py
-```
-
-2. make test_pairs.txt
-```bash
-python3 utils/make_pairs.py
 ```
