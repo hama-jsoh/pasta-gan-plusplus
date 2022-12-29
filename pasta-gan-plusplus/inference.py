@@ -20,7 +20,7 @@ import tqdm
 
 import sys
 sys.path.append('./graphonomy')
-from inference import Graphonomy
+from graphonomy import Graphonomy
 
 
 CMAP = sio.loadmat("human_colormap.mat")["colormap"]
