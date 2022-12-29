@@ -1,4 +1,29 @@
-# Simple PASTA-GAN-plusplus inference server
+# PASTA-GAN-plusplus Inference Server
+
+----
+
+<p align="center">
+  <b> PASTA-GAN++ with AWS </b>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/version-0.0.1-green?style=flat-square">
+  <img src="https://img.shields.io/badge/Python-3.8.x-3776AB?style=flat-square&logo=Python&logoColor=white">
+  <img src="https://img.shields.io/badge/CUDA-11.0.3-76B900?style=flat-square&logo=NVIDIA&logoColor=white">
+  <img src="https://img.shields.io/badge/CUDNN-8-76B900?style=flat-square&logo=NVIDIA&logoColor=white">
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/AWS-Lambda-FF9900?style=flat-square&logo=AWS-Lambda&logoColor=white">
+  <img src="https://img.shields.io/badge/Amazon-EC2-FF9900?style=flat-square&logo=Amazon-EC2&logoColor=white">
+  <img src="https://img.shields.io/badge/Amazon-RDS-527FFF?style=flat-square&logo=Amazon-RDS&logoColor=white">
+  <img src="https://img.shields.io/badge/Amazon-S3-569A31?style=flat-square&logo=Amazon-S3&logoColor=white">
+  
+  <img src="https://img.shields.io/badge/Amazon-CloudWatch-FF4F8B?style=flat-square&logo=Amazon-CloudWatch&logoColor=white">
+  <img src="https://img.shields.io/badge/Amazon-API_Gateway-A100FF?style=flat-square&logo=Amazon-API-Gateway&logoColor=white">
+</p>
+
+----
 
 ## Getting started
 
