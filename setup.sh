@@ -14,11 +14,6 @@ download_google_drive() {
 
 main() {
 
-	# set pastagan datasets
-	download_google_drive 1QgIQJ83FXE9XLUhKdY1RK-cHr5PGAa8V UPT_512_320.zip \
-	 && unzip UPT_512_320.zip \
-	 && rm UPT_512_320.zip
-
 	# set pastagan model
 	download_google_drive 1k5QTVzd1B67--Y7WGejbRVA1Cgg6Wy2P network-snapshot-004408.pkl \
 	 && mkdir -p pasta-gan-plusplus/checkpoints/pasta-gan++/ \
